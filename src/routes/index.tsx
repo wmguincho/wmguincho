@@ -124,9 +124,31 @@ export const Route = createFileRoute("/")({
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "AutoWash" satisfies string extends string ? string : never,
-        }).replace('"AutoWash"', '"AutomotiveBusiness"'),
+          "@type": "AutomotiveBusiness",
+          name: "WM Guincho 24HR",
+          description:
+            "Serviço de guincho e reboque 24 horas, troca de pneu, carga de bateria, pane seca e chaveiro automotivo.",
+          telephone: PHONE_TEL,
+          areaServed: areas,
+          openingHoursSpecification: [
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday",
+              ],
+              opens: "00:00",
+              closes: "23:59",
+            },
+          ],
+        }),
       },
+
       {
         type: "application/ld+json",
         children: JSON.stringify({
