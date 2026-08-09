@@ -173,7 +173,7 @@ function Index() {
       <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
           <a href="#topo" className="flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-sm btn-emergency font-display text-lg">
+            <span className="grid h-9 w-9 place-items-center rounded-md btn-emergency font-display text-lg">
               WM
             </span>
             <span className="font-display text-2xl tracking-wide">
@@ -196,7 +196,7 @@ function Index() {
           </nav>
           <a
             href={`tel:${PHONE_TEL}`}
-            className="btn-emergency inline-flex items-center gap-2 rounded-sm px-4 py-2 text-sm font-bold uppercase tracking-wide hover:brightness-105"
+            className="btn-emergency inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-bold uppercase tracking-wide hover:brightness-105"
           >
             <Phone className="h-4 w-4" aria-hidden="true" />
             <span className="hidden sm:inline">{PHONE}</span>
@@ -239,7 +239,7 @@ function Index() {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
                   href={`tel:${PHONE_TEL}`}
-                  className="btn-emergency inline-flex items-center justify-center gap-2 rounded-sm px-7 py-4 text-base font-bold uppercase tracking-wide hover:-translate-y-0.5"
+                  className="btn-emergency inline-flex items-center justify-center gap-2 rounded-md px-7 py-4 text-base font-bold uppercase tracking-wide hover:-translate-y-0.5"
                 >
                   <Phone className="h-5 w-5" aria-hidden="true" />
                   Ligar {PHONE}
@@ -247,7 +247,7 @@ function Index() {
                 <a
                   href={WHATS}
                   rel="noopener"
-                  className="inline-flex items-center justify-center gap-2 rounded-sm border border-border bg-surface px-7 py-4 text-base font-bold uppercase tracking-wide transition-colors hover:border-primary hover:text-primary"
+                  className="inline-flex items-center justify-center gap-2 rounded-md border border-border bg-surface px-7 py-4 text-base font-bold uppercase tracking-wide transition-colors hover:border-primary hover:text-primary"
                 >
                   <MessageCircle className="h-5 w-5" aria-hidden="true" />
                   WhatsApp
@@ -285,9 +285,9 @@ function Index() {
             {services.map(({ icon: Icon, title, desc }) => (
               <li
                 key={title}
-                className="group rounded-md border border-border bg-surface p-6 transition-colors hover:border-primary/60"
+                className="group rounded-lg border border-border bg-surface p-6 transition-colors hover:border-primary/60"
               >
-                <span className="mb-5 grid h-12 w-12 place-items-center rounded-sm bg-surface-2 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                <span className="mb-5 grid h-12 w-12 place-items-center rounded-md bg-surface-2 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                   <Icon className="h-6 w-6" aria-hidden="true" />
                 </span>
                 <h3 className="font-display text-2xl uppercase">{title}</h3>
@@ -322,7 +322,7 @@ function Index() {
               height={768}
               loading="lazy"
               decoding="async"
-              className="rounded-md border border-border object-cover"
+              className="rounded-lg border border-border object-cover"
             />
           </div>
         </section>
@@ -337,7 +337,7 @@ function Index() {
               { icon: Car, t: "Frota própria", d: "Plataformas revisadas e equipamento para cada porte." },
               { icon: CheckCircle2, t: "Preço fechado", d: "Valor combinado antes da saída, sem surpresa." },
             ].map(({ icon: Icon, t, d }) => (
-              <li key={t} className="rounded-md border border-border bg-surface p-6">
+              <li key={t} className="rounded-lg border border-border bg-surface p-6">
                 <Icon className="h-7 w-7 text-primary" aria-hidden="true" />
                 <h3 className="mt-4 font-display text-xl uppercase">{t}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{d}</p>
@@ -378,7 +378,7 @@ function Index() {
               ["Bateria arriada no estacionamento. Resolveram no local sem precisar rebocar. Preço justo.", "Camila S."],
               ["Levaram meu carro rebaixado sem um arranhão. Combinaram o valor antes e cumpriram.", "Diego A."],
             ].map(([txt, autor]) => (
-              <li key={autor} className="rounded-md border border-border bg-surface p-6">
+              <li key={autor} className="rounded-lg border border-border bg-surface p-6">
                 <div className="flex gap-1 text-primary" aria-label="5 de 5 estrelas">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star key={i} className="h-4 w-4 fill-current" aria-hidden="true" />
@@ -395,7 +395,7 @@ function Index() {
         <section id="faq" className="border-t border-border bg-surface">
           <div className="mx-auto max-w-3xl px-4 py-20">
             <h2 className="font-display text-4xl uppercase sm:text-5xl">Dúvidas frequentes</h2>
-            <div className="mt-8 divide-y divide-border border-y border-border">
+            <div className="mt-8 divide-y divide-border overflow-hidden rounded-lg border-y border-border">
               {faqs.map((f) => (
                 <details key={f.q} className="group py-5">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
@@ -423,7 +423,7 @@ function Index() {
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <a
                 href={`tel:${PHONE_TEL}`}
-                className="btn-emergency inline-flex items-center justify-center gap-2 rounded-sm px-8 py-4 text-base font-bold uppercase tracking-wide hover:-translate-y-0.5"
+                className="btn-emergency inline-flex items-center justify-center gap-2 rounded-md px-8 py-4 text-base font-bold uppercase tracking-wide hover:-translate-y-0.5"
               >
                 <Phone className="h-5 w-5" aria-hidden="true" />
                 {PHONE}
@@ -431,7 +431,7 @@ function Index() {
               <a
                 href={WHATS}
                 rel="noopener"
-                className="inline-flex items-center justify-center gap-2 rounded-sm border border-border bg-surface px-8 py-4 text-base font-bold uppercase tracking-wide transition-colors hover:border-primary hover:text-primary"
+                className="inline-flex items-center justify-center gap-2 rounded-md border border-border bg-surface px-8 py-4 text-base font-bold uppercase tracking-wide transition-colors hover:border-primary hover:text-primary"
               >
                 <MessageCircle className="h-5 w-5" aria-hidden="true" />
                 Chamar no WhatsApp
@@ -459,7 +459,7 @@ function Index() {
       </footer>
 
       {/* Barra fixa mobile */}
-      <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-2 gap-px border-t border-border bg-border md:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-2 gap-px overflow-hidden rounded-t-xl border-t border-border bg-border md:hidden">
         <a
           href={`tel:${PHONE_TEL}`}
           className="btn-emergency flex items-center justify-center gap-2 py-4 text-sm font-bold uppercase"
