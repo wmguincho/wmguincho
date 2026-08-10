@@ -157,13 +157,34 @@
   color: transparent;
 }
 
+@utility text-gradient-blue {
+  background-image: var(--gradient-blue);
+  background-clip: text;
+  color: transparent;
+}
+
 @utility btn-emergency {
   background-image: var(--gradient-amber);
-  color: var(--primary-foreground);
+  color: oklch(1 0 0);
   box-shadow: var(--shadow-amber);
   transition:
     transform 0.18s ease,
     filter 0.18s ease;
+}
+
+@utility btn-blue {
+  background-image: var(--gradient-blue);
+  color: oklch(1 0 0);
+  box-shadow: var(--shadow-blue);
+  transition:
+    transform 0.18s ease,
+    filter 0.18s ease;
+}
+
+@utility panel-light {
+  background-color: var(--light);
+  color: var(--light-foreground);
+  border-color: var(--light-border);
 }
 
 @utility pulse-ring {
@@ -173,10 +194,11 @@
 @keyframes pulse-ring {
   0%,
   100% {
-    box-shadow: 0 0 0 0 oklch(0.82 0.17 82 / 0.5);
+    box-shadow: 0 0 0 0 oklch(0.6 0.21 255 / 0.5);
   }
   50% {
-    box-shadow: 0 0 0 14px oklch(0.82 0.17 82 / 0);
+    box-shadow: 0 0 0 14px oklch(0.6 0.21 255 / 0);
   }
 }
+
 
