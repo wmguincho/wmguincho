@@ -1,14 +1,24 @@
-# Welcome to your Lovable project
+# WM Guincho 24HR
+
+Pega ref https://elements.envato.com/pt-br/gotow-towing-services-elementor-template-kit-9YH2YXS
+
+gera uma landing page ultra rapida, seo avancado, pagespeed +100 em tudo 
+
+lindo bonito e maravilhoso o site deve ser para a WM GUINCHO 24HR
+
+pega refs na porto seguro tambem dos servicos de guincho
 
 This project was built with [Lovable](https://lovable.dev).
 
+**Live app**: https://wmguincho.lovable.app
+
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/ca062376-248b-4737-b404-3c54f5391bec).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +30,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
