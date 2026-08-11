@@ -27,9 +27,9 @@ import logo from "@/assets/wm-guincho-logo.png";
 
 const SITE_URL = "https://wmguincho.lovable.app";
 const HOME_URL = `${SITE_URL}/`;
-const PHONE = "(11) 91234-5678";
-const PHONE_TEL = "+5511912345678";
-const WHATS = "https://wa.me/5511912345678?text=Preciso%20de%20guincho%20agora";
+const PHONE = "+55 11 96944-9568";
+const PHONE_TEL = "+5511969449568";
+const WHATS = "https://wa.me/5511969449568?text=Preciso%20de%20guincho%20agora";
 const PAGE_TITLE = "Guincho 24h Zona Leste SP | WM Guincho 24HR";
 const PAGE_DESCRIPTION =
   "Guincho 24h na Zona Leste SP com WhatsApp, preço fechado, reboque, busca e apreensão, garagem baixa e rua estreita.";
