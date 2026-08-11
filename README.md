@@ -1,32 +1,29 @@
 # WM Guincho 24HR
 
-Pega ref https://elements.envato.com/pt-br/gotow-towing-services-elementor-template-kit-9YH2YXS
+Landing page de alta performance para a WM Guincho 24HR, especializada em serviços de guincho, reboque, assistência veicular e recuperação de veículos na Zona Leste de São Paulo.
 
-gera uma landing page ultra rapida, seo avancado, pagespeed +100 em tudo 
+## Stack
 
-lindo bonito e maravilhoso o site deve ser para a WM GUINCHO 24HR
+- [TanStack Start](https://tanstack.com/start)
+- [React](https://react.dev)
+- [Tailwind CSS](https://tailwindcss.com)
+- [TypeScript](https://www.typescriptlang.org)
 
-pega refs na porto seguro tambem dos servicos de guincho
+## Desenvolvimento local
 
-This project was built with [Lovable](https://lovable.dev).
-
-**Live app**: https://wmguincho.lovable.app
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/ca062376-248b-4737-b404-3c54f5391bec).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Você precisa do Node.js e do npm instalados.
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
+git clone <url-do-repositorio>
+cd <nome-do-repositorio>
 npm i
 npm run dev
+```
+
+A aplicação estará disponível em `http://localhost:8080`.
+
+## Build para produção
+
+```sh
+npm run build
 ```
