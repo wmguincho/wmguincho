@@ -21,7 +21,6 @@ import {
   BadgeCheck,
   CreditCard,
 } from "lucide-react";
-import heroImg from "@/assets/hero-guincho.jpg";
 import operadorImg from "@/assets/operador.jpg";
 import logo from "@/assets/wm-guincho-logo.png";
 
@@ -32,7 +31,7 @@ const PHONE_TEL = "+5511912345678";
 const WHATS = "https://wa.me/5511912345678?text=Preciso%20de%20guincho%20agora";
 const PAGE_TITLE = "Guincho 24h Zona Leste SP | WM Guincho 24HR";
 const PAGE_DESCRIPTION =
-  "Guincho 24h na Zona Leste SP com WhatsApp, preço fechado, reboque, busca e apreensão, garagem baixa e rua estreita.";
+  "Guincho asa-delta 24h na Zona Leste SP com WhatsApp, preço fechado, busca e apreensão, garagem baixa e rua estreita.";
 
 const services = [
   {
@@ -49,8 +48,8 @@ const services = [
   },
   {
     icon: Truck,
-    title: "Reboque 24h",
-    desc: "Plataforma e asa-delta para carros de passeio, SUVs e utilitários leves.",
+    title: "Guincho asa-delta 24h",
+    desc: "Remoção com as rodas dianteiras suspensas e as rodas traseiras no chão, para carros de passeio, SUVs e utilitários leves.",
   },
   {
     icon: CircleDot,
@@ -93,7 +92,7 @@ const steps = [
   {
     n: "03",
     t: "Chegada rápida e veículo a salvo",
-    d: "Carregamento seguro e entrega no destino combinado.",
+    d: "Engate seguro no asa-delta e entrega no destino combinado.",
   },
 ];
 
@@ -109,6 +108,10 @@ const faqs = [
   {
     q: "O guincho entra em garagem baixa ou rua estreita?",
     a: "Sim. Temos equipamento compacto e acessórios de arraste para subsolos, garagens com pé-direito baixo, vielas e ruas estreitas onde caminhões-guincho maiores não conseguem entrar nem manobrar.",
+  },
+  {
+    q: "Vocês trabalham com plataforma?",
+    a: "Não trabalhamos com plataforma. O atendimento é feito com guincho asa-delta: as rodas dianteiras ficam suspensas e as rodas traseiras seguem no chão durante a remoção.",
   },
   {
     q: "Qual o tempo médio de chegada do guincho?",
@@ -169,21 +172,21 @@ export const Route = createFileRoute("/")({
       {
         name: "keywords",
         content:
-          "guincho zona leste, guincho 24 horas são paulo, busca e apreensão, recuperação de veículo financiado, reboque garagem baixa, guincho rua estreita",
+          "guincho asa-delta zona leste, guincho 24 horas são paulo, busca e apreensão, recuperação de veículo financiado, reboque garagem baixa, guincho rua estreita",
       },
       { name: "robots", content: "index, follow, max-image-preview:large" },
       { property: "og:title", content: PAGE_TITLE },
       { property: "og:description", content: PAGE_DESCRIPTION },
       { property: "og:url", content: HOME_URL },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: new URL(heroImg, SITE_URL).toString() },
+      { property: "og:image", content: new URL(operadorImg, SITE_URL).toString() },
       {
         property: "og:image:alt",
-        content: "Guincho plataforma da WM Guincho atendendo veículo à noite em São Paulo",
+        content: "Operador da WM Guincho preparando atendimento com cinta em São Paulo",
       },
       { name: "twitter:title", content: PAGE_TITLE },
       { name: "twitter:description", content: PAGE_DESCRIPTION },
-      { name: "twitter:image", content: new URL(heroImg, SITE_URL).toString() },
+      { name: "twitter:image", content: new URL(operadorImg, SITE_URL).toString() },
     ],
     links: [
       { rel: "canonical", href: HOME_URL },
@@ -200,7 +203,7 @@ export const Route = createFileRoute("/")({
               "@id": `${SITE_URL}/#business`,
               name: "WM Guincho 24HR",
               url: HOME_URL,
-              image: new URL(heroImg, SITE_URL).toString(),
+              image: new URL(operadorImg, SITE_URL).toString(),
               logo: new URL(logo, SITE_URL).toString(),
               description: PAGE_DESCRIPTION,
               telephone: PHONE_TEL,
@@ -355,8 +358,8 @@ function Index() {
         {/* HERO */}
         <section className="relative isolate overflow-hidden">
           <img
-            src={heroImg}
-            alt="Guincho plataforma da WM rebocando um carro em via molhada à noite na Zona Leste de São Paulo"
+            src={operadorImg}
+            alt="Operador da WM Guincho preparando atendimento com cinta em um carro à noite"
             width={1600}
             height={1104}
             decoding="async"
@@ -378,8 +381,8 @@ function Index() {
                 <span className="text-gradient-blue">Zona Leste de São Paulo</span>
               </h1>
               <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-                Estamos na Zona Leste e saímos daqui para você: reboque, recuperação de veículos
-                financiados em busca e apreensão e atendimento em garagens e ruas onde
+                Estamos na Zona Leste e saímos daqui para você: guincho asa-delta, recuperação de
+                veículos financiados em busca e apreensão e atendimento em garagens e ruas onde
                 caminhões-guincho maiores não entram.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
