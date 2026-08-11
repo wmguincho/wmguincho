@@ -728,7 +728,7 @@ function Index() {
         </section>
       </main>
 
-      <footer className="panel-light border-t">
+      <footer className="bg-black border-t border-white/10">
         <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-4 py-12 sm:flex-row sm:items-center">
           <div>
             <img
@@ -740,11 +740,11 @@ function Index() {
               decoding="async"
               className="h-auto w-36 object-contain sm:w-40"
             />
-            <p className="mt-3 text-sm text-light-muted">
+            <p className="mt-3 text-sm text-muted-foreground">
               Reboque e socorro 24 horas — Zona Leste, São Paulo e região.
             </p>
           </div>
-          <p className="text-sm text-light-muted">
+          <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} WM Guincho 24HR. Todos os direitos reservados.
           </p>
         </div>
