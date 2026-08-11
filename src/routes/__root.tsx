@@ -118,6 +118,12 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
+        <noscript
+          dangerouslySetInnerHTML={{
+            __html:
+              '<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCZK8549" height="0" width="0" style="display:none;visibility:hidden"></iframe>',
+          }}
+        />
         {children}
         <Scripts />
       </body>
