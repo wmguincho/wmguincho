@@ -22,7 +22,8 @@ import {
   CreditCard,
 } from "lucide-react";
 import operadorImg from "@/assets/operador.jpg";
-import logo from "@/assets/wm-guincho-logo.png";
+import logo from "@/assets/wm-guincho-logo.webp";
+import { openCookiePreferences } from "@/components/cookie-consent";
 
 const SITE_URL = "https://wmguincho.lovable.app";
 const HOME_URL = `${SITE_URL}/`;
@@ -294,6 +295,12 @@ export const Route = createFileRoute("/")({
   }),
 });
 
+function trackLead(type: "call" | "whatsapp") {
+  const w = window as unknown as { dataLayer?: Record<string, unknown>[] };
+  w.dataLayer = w.dataLayer || [];
+  w.dataLayer.push({ event: "lead_conversion", conversion_type: type });
+}
+
 function Index() {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -345,6 +352,7 @@ function Index() {
           </nav>
           <a
             href={`tel:${PHONE_TEL}`}
+            onClick={() => trackLead("call")}
             className="btn-emergency inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-bold uppercase tracking-wide hover:brightness-105"
           >
             <Phone className="h-4 w-4" aria-hidden="true" />
@@ -360,8 +368,9 @@ function Index() {
           <img
             src={operadorImg}
             alt="Operador da WM Guincho preparando atendimento com cinta em um carro à noite"
-            width={1600}
-            height={1104}
+            width={1024}
+            height={768}
+            fetchPriority="high"
             decoding="async"
             className="absolute inset-0 h-full w-full object-cover opacity-40"
           />
@@ -388,6 +397,7 @@ function Index() {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
                   href={`tel:${PHONE_TEL}`}
+                  onClick={() => trackLead("call")}
                   className="btn-emergency inline-flex items-center justify-center gap-2 rounded-md px-7 py-4 text-base font-bold uppercase tracking-wide hover:-translate-y-0.5"
                 >
                   <Phone className="h-5 w-5" aria-hidden="true" />
@@ -396,6 +406,7 @@ function Index() {
                 <a
                   href={WHATS}
                   rel="noopener"
+                  onClick={() => trackLead("whatsapp")}
                   className="inline-flex items-center justify-center gap-2 rounded-md border border-border bg-surface px-7 py-4 text-base font-bold uppercase tracking-wide transition-colors hover:border-primary hover:text-primary"
                 >
                   <MessageCircle className="h-5 w-5" aria-hidden="true" />
@@ -446,7 +457,9 @@ function Index() {
         <section id="servicos" className="panel-light scroll-mt-24 border-y">
           <div className="mx-auto max-w-6xl px-4 py-20">
             <header className="mb-12 max-w-2xl">
-              <p className="text-xs font-bold uppercase tracking-[0.25em] text-primary">Serviços</p>
+              <p className="text-xs font-bold uppercase tracking-[0.25em] text-primary-on-light">
+                Serviços
+              </p>
               <h2 className="mt-3 font-display text-4xl uppercase sm:text-5xl">
                 Socorro completo para o seu veículo
               </h2>
@@ -607,7 +620,7 @@ function Index() {
         {/* ZONA LESTE — container branco */}
         <section id="zona-leste" className="panel-light scroll-mt-24 border-y">
           <div className="mx-auto max-w-6xl px-4 py-20">
-            <p className="text-xs font-bold uppercase tracking-[0.25em] text-primary">
+            <p className="text-xs font-bold uppercase tracking-[0.25em] text-primary-on-light">
               Zona Leste • São Paulo
             </p>
             <h2 className="mt-3 font-display text-4xl uppercase sm:text-5xl">
@@ -624,7 +637,7 @@ function Index() {
               {bairrosZL.map((b) => (
                 <li
                   key={b}
-                  className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-2 text-sm font-medium text-primary"
+                  className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-2 text-sm font-medium text-primary-on-light"
                 >
                   <MapPin className="h-4 w-4" aria-hidden="true" />
                   {b}
@@ -687,7 +700,7 @@ function Index() {
                 <details key={f.q} className="group py-5">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
                     {f.q}
-                    <span className="text-primary transition-transform group-open:rotate-45">
+                    <span className="text-primary-on-light transition-transform group-open:rotate-45">
                       +
                     </span>
                   </summary>
@@ -712,6 +725,7 @@ function Index() {
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <a
                 href={`tel:${PHONE_TEL}`}
+                onClick={() => trackLead("call")}
                 className="btn-emergency inline-flex items-center justify-center gap-2 rounded-md px-8 py-4 text-base font-bold uppercase tracking-wide hover:-translate-y-0.5"
               >
                 <Phone className="h-5 w-5" aria-hidden="true" />
@@ -720,6 +734,7 @@ function Index() {
               <a
                 href={WHATS}
                 rel="noopener"
+                onClick={() => trackLead("whatsapp")}
                 className="btn-blue inline-flex items-center justify-center gap-2 rounded-md px-8 py-4 text-base font-bold uppercase tracking-wide hover:-translate-y-0.5"
               >
                 <MessageCircle className="h-5 w-5" aria-hidden="true" />
@@ -746,10 +761,31 @@ function Index() {
             <p className="mt-3 text-sm text-muted-foreground">
               Reboque e socorro 24 horas — Zona Leste, São Paulo e região.
             </p>
+            <p className="mt-2 max-w-sm text-xs text-muted-foreground">
+              Dados enviados por telefone ou WhatsApp são usados apenas para viabilizar o seu
+              atendimento.
+            </p>
           </div>
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} WM Guincho 24HR. Todos os direitos reservados.
-          </p>
+          <div className="flex flex-col items-start gap-3 sm:items-end">
+            <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+              <a
+                href="/politica-de-privacidade"
+                className="text-muted-foreground hover:text-primary"
+              >
+                Política de Privacidade
+              </a>
+              <button
+                type="button"
+                onClick={() => openCookiePreferences()}
+                className="text-muted-foreground hover:text-primary"
+              >
+                Gerenciar cookies
+              </button>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              © {new Date().getFullYear()} WM Guincho 24HR. Todos os direitos reservados.
+            </p>
+          </div>
         </div>
       </footer>
 
@@ -769,6 +805,7 @@ function Index() {
           </div>
           <a
             href={`tel:${PHONE_TEL}`}
+            onClick={() => trackLead("call")}
             className="btn-emergency flex min-h-14 items-center justify-center gap-2 px-4 py-3 text-sm font-bold uppercase"
           >
             <Phone className="h-4 w-4" aria-hidden="true" />
@@ -777,6 +814,7 @@ function Index() {
           <a
             href={WHATS}
             rel="noopener"
+            onClick={() => trackLead("whatsapp")}
             className="btn-blue flex min-h-14 items-center justify-center gap-2 px-4 py-3 text-sm font-bold uppercase"
           >
             <MessageCircle className="h-4 w-4" aria-hidden="true" />

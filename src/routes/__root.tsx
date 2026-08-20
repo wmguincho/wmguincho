@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { CookieConsent } from "../components/cookie-consent";
 
 function NotFoundComponent() {
   return (
@@ -99,7 +100,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         type: "text/javascript",
         script: {
-          text: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-PCZK8549');`,
+          // Consent Mode v2 defaults, set before anything else runs. GTM
+          // itself is only requested from the browser after the visitor
+          // grants consent — see components/cookie-consent.tsx — so this
+          // script sets no cookies on its own.
+          text: `window.dataLayer=window.dataLayer||[];function gtag(){window.dataLayer.push(arguments);}window.gtag=gtag;gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','functionality_storage':'denied','personalization_storage':'denied','security_storage':'granted','wait_for_update':500});`,
         },
       },
     ],
@@ -118,12 +123,6 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <noscript
-          dangerouslySetInnerHTML={{
-            __html:
-              '<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PCZK8549" height="0" width="0" style="display:none;visibility:hidden"></iframe>',
-          }}
-        />
         {children}
         <Scripts />
       </body>
@@ -138,6 +137,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
+      <CookieConsent />
     </QueryClientProvider>
   );
 }
