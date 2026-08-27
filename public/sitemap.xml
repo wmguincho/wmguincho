@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://wmguincho.lovable.app/</loc>
-    <lastmod>2026-08-10</lastmod>
+    <loc>https://wmguinchodaleste.com.br/</loc>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://wmguincho.lovable.app/politica-de-privacidade</loc>
-    <lastmod>2026-08-20</lastmod>
+    <loc>https://wmguinchodaleste.com.br/politica-de-privacidade</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://wmguinchodaleste.com.br/politica-de-cookies</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://wmguinchodaleste.com.br/termos-de-uso</loc>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

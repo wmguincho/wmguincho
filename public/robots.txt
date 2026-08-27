@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://wmguincho.lovable.app/sitemap.xml
+Sitemap: https://wmguinchodaleste.com.br/sitemap.xml

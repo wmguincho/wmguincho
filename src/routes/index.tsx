@@ -21,11 +21,15 @@ import {
   BadgeCheck,
   CreditCard,
 } from "lucide-react";
-import operadorImg from "@/assets/operador.jpg";
+import operadorImg from "@/assets/operador.webp";
+import operadorOg from "@/assets/operador.jpg";
 import logo from "@/assets/wm-guincho-logo.webp";
 import { openCookiePreferences } from "@/components/cookie-consent";
+import { MobileNav } from "@/components/mobile-nav";
+import { Reveal } from "@/components/reveal";
+import { CountUp } from "@/components/count-up";
 
-const SITE_URL = "https://wmguincho.lovable.app";
+const SITE_URL = "https://wmguinchodaleste.com.br";
 const HOME_URL = `${SITE_URL}/`;
 const PHONE = "+55 11 96944-9568";
 const PHONE_TEL = "+5511969449568";
@@ -180,14 +184,14 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: PAGE_DESCRIPTION },
       { property: "og:url", content: HOME_URL },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: new URL(operadorImg, SITE_URL).toString() },
+      { property: "og:image", content: new URL(operadorOg, SITE_URL).toString() },
       {
         property: "og:image:alt",
         content: "Operador da WM Guincho preparando atendimento com cinta em São Paulo",
       },
       { name: "twitter:title", content: PAGE_TITLE },
       { name: "twitter:description", content: PAGE_DESCRIPTION },
-      { name: "twitter:image", content: new URL(operadorImg, SITE_URL).toString() },
+      { name: "twitter:image", content: new URL(operadorOg, SITE_URL).toString() },
     ],
     links: [
       { rel: "canonical", href: HOME_URL },
@@ -204,7 +208,7 @@ export const Route = createFileRoute("/")({
               "@id": `${SITE_URL}/#business`,
               name: "WM Guincho 24HR",
               url: HOME_URL,
-              image: new URL(operadorImg, SITE_URL).toString(),
+              image: new URL(operadorOg, SITE_URL).toString(),
               logo: new URL(logo, SITE_URL).toString(),
               description: PAGE_DESCRIPTION,
               telephone: PHONE_TEL,
@@ -320,6 +324,12 @@ function Index() {
             : "border-white/10 bg-background/35"
         }`}
       >
+        <a
+          href="#topo"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-[60] focus:rounded-md focus:bg-primary focus:px-3 focus:py-2 focus:text-sm focus:font-semibold focus:text-primary-foreground"
+        >
+          Ir para o conteúdo
+        </a>
         <div className="hazard-bar h-1 w-full" aria-hidden="true" />
         <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-3 px-4 sm:gap-4">
           <a href="#topo" className="flex items-center gap-3">
@@ -350,15 +360,18 @@ function Index() {
               Dúvidas
             </a>
           </nav>
-          <a
-            href={`tel:${PHONE_TEL}`}
-            onClick={() => trackLead("call")}
-            className="btn-emergency inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-bold uppercase tracking-wide hover:brightness-105"
-          >
-            <Phone className="h-4 w-4" aria-hidden="true" />
-            <span className="hidden sm:inline">{PHONE}</span>
-            <span className="sm:hidden">Ligar</span>
-          </a>
+          <div className="flex items-center gap-1.5 sm:gap-3">
+            <a
+              href={`tel:${PHONE_TEL}`}
+              onClick={() => trackLead("call")}
+              className="btn-emergency inline-flex min-h-11 items-center gap-2 rounded-md px-3 py-2 text-sm font-bold uppercase tracking-wide hover:brightness-105 sm:px-4"
+            >
+              <Phone className="h-4 w-4" aria-hidden="true" />
+              <span className="hidden sm:inline">{PHONE}</span>
+              <span className="sm:hidden">Ligar</span>
+            </a>
+            <MobileNav phone={PHONE} phoneTel={PHONE_TEL} whatsappUrl={WHATS} onLead={trackLead} />
+          </div>
         </div>
       </header>
 
@@ -414,13 +427,17 @@ function Index() {
                 </a>
               </div>
               <dl className="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-border pt-6">
-                {[
-                  ["15 min", "na Zona Leste"],
-                  ["24/7", "todos os dias"],
-                  ["+12 mil", "atendimentos"],
-                ].map(([k, v]) => (
+                {(
+                  [
+                    ["15 min", "na Zona Leste"],
+                    ["24/7", "todos os dias"],
+                    ["+12 mil", "atendimentos"],
+                  ] as const
+                ).map(([k, v]) => (
                   <div key={v}>
-                    <dt className="font-display text-3xl text-primary">{k}</dt>
+                    <dt className="font-display text-3xl text-primary">
+                      {k.includes("/") ? k : <CountUp value={k} />}
+                    </dt>
                     <dd className="text-xs uppercase tracking-wider text-muted-foreground">{v}</dd>
                   </div>
                 ))}
@@ -456,7 +473,7 @@ function Index() {
         {/* SERVIÇOS — container branco */}
         <section id="servicos" className="panel-light scroll-mt-24 border-y">
           <div className="mx-auto max-w-6xl px-4 py-20">
-            <header className="mb-12 max-w-2xl">
+            <Reveal as="header" className="mb-12 max-w-2xl">
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-primary-on-light">
                 Serviços
               </p>
@@ -467,11 +484,13 @@ function Index() {
                 Uma única chamada resolve. Avaliamos o problema por telefone e enviamos o
                 equipamento certo — inclusive para casos que outros guinchos recusam.
               </p>
-            </header>
+            </Reveal>
             <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {services.map(({ icon: Icon, title, desc, highlight }) => (
-                <li
+              {services.map(({ icon: Icon, title, desc, highlight }, i) => (
+                <Reveal
+                  as="li"
                   key={title}
+                  delay={(i % 3) * 80}
                   className={`group rounded-lg border p-6 transition-shadow hover:shadow-md ${
                     highlight ? "border-primary/40 bg-primary/5" : "border-light-border bg-light"
                   }`}
@@ -481,7 +500,7 @@ function Index() {
                   </span>
                   <h3 className="font-display text-2xl uppercase">{title}</h3>
                   <p className="mt-2 text-sm text-light-muted">{desc}</p>
-                </li>
+                </Reveal>
               ))}
             </ul>
           </div>
@@ -746,8 +765,8 @@ function Index() {
         </section>
       </main>
 
-      <footer className="bg-black border-t border-white/10">
-        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-4 py-12 sm:flex-row sm:items-center">
+      <footer className="border-t border-white/10 bg-black">
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1.2fr]">
           <div>
             <img
               src={logo}
@@ -766,13 +785,82 @@ function Index() {
               atendimento.
             </p>
           </div>
-          <div className="flex flex-col items-start gap-3 sm:items-end">
-            <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+
+          <nav aria-label="Rodapé" className="text-sm">
+            <p className="font-display text-lg uppercase text-foreground">Navegação</p>
+            <ul className="mt-4 space-y-2">
+              <li>
+                <a href="#servicos" className="text-muted-foreground hover:text-primary">
+                  Serviços
+                </a>
+              </li>
+              <li>
+                <a href="#apreensao" className="text-muted-foreground hover:text-primary">
+                  Busca e apreensão
+                </a>
+              </li>
+              <li>
+                <a href="#zona-leste" className="text-muted-foreground hover:text-primary">
+                  Zona Leste
+                </a>
+              </li>
+              <li>
+                <a href="#faq" className="text-muted-foreground hover:text-primary">
+                  Dúvidas frequentes
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <div className="text-sm">
+            <p className="font-display text-lg uppercase text-foreground">Atendimento 24h</p>
+            <ul className="mt-4 space-y-2">
+              <li>
+                <a
+                  href={`tel:${PHONE_TEL}`}
+                  onClick={() => trackLead("call")}
+                  className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary"
+                >
+                  <Phone className="h-4 w-4" aria-hidden="true" />
+                  {PHONE}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={WHATS}
+                  rel="noopener"
+                  onClick={() => trackLead("whatsapp")}
+                  className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary"
+                >
+                  <MessageCircle className="h-4 w-4" aria-hidden="true" />
+                  WhatsApp
+                </a>
+              </li>
+              <li className="inline-flex items-center gap-2 text-muted-foreground">
+                <MapPin className="h-4 w-4" aria-hidden="true" />
+                Zona Leste de São Paulo e Grande SP
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="border-t border-white/10">
+          <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-3 px-4 py-6 text-sm sm:flex-row sm:items-center">
+            <p className="text-muted-foreground">
+              © {new Date().getFullYear()} WM Guincho 24HR. Todos os direitos reservados.
+            </p>
+            <div className="flex flex-wrap gap-x-4 gap-y-2">
               <a
                 href="/politica-de-privacidade"
                 className="text-muted-foreground hover:text-primary"
               >
-                Política de Privacidade
+                Privacidade
+              </a>
+              <a href="/politica-de-cookies" className="text-muted-foreground hover:text-primary">
+                Cookies
+              </a>
+              <a href="/termos-de-uso" className="text-muted-foreground hover:text-primary">
+                Termos de uso
               </a>
               <button
                 type="button"
@@ -782,9 +870,6 @@ function Index() {
                 Gerenciar cookies
               </button>
             </div>
-            <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} WM Guincho 24HR. Todos os direitos reservados.
-            </p>
           </div>
         </div>
       </footer>

@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { openCookiePreferences } from "@/components/cookie-consent";
 
-const SITE_URL = "https://wmguincho.lovable.app";
+const SITE_URL = "https://wmguinchodaleste.com.br";
 const PAGE_URL = `${SITE_URL}/politica-de-privacidade`;
-const PAGE_TITLE = "Política de Privacidade e Cookies | WM Guincho 24HR";
+const PAGE_TITLE = "Política de Privacidade | WM Guincho 24HR";
 const PAGE_DESCRIPTION =
   "Como a WM Guincho 24HR coleta, usa e protege dados pessoais, e como você exerce seus direitos como titular sob a LGPD.";
 
@@ -31,7 +31,7 @@ function PoliticaDePrivacidade() {
         </a>
 
         <h1 className="mt-6 font-display text-4xl uppercase sm:text-5xl">
-          Política de Privacidade e Cookies
+          Política de Privacidade
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">Última atualização: 20/08/2026</p>
 
@@ -39,7 +39,7 @@ function PoliticaDePrivacidade() {
           <section>
             <h2>1. Quem somos</h2>
             <p>
-              Esta Política se aplica ao site <strong>wmguincho.lovable.app</strong>, operado por{" "}
+              Esta Política se aplica ao site <strong>wmguinchodaleste.com.br</strong>, operado por{" "}
               <strong>WM Guincho 24HR</strong> (
               <em>
                 [razão social completa], CNPJ [00.000.000/0000-00], endereço: [endereço completo]
@@ -141,7 +141,12 @@ function PoliticaDePrivacidade() {
             </ul>
             <p>
               Nenhum cookie analítico ou de marketing é carregado antes da sua escolha explícita no
-              banner. Rejeitar todos não bloqueia o acesso a nenhum conteúdo do site.
+              banner. Rejeitar todos não bloqueia o acesso a nenhum conteúdo do site. O detalhamento
+              de cada categoria, prazos e serviços de terceiros está na{" "}
+              <a href="/politica-de-cookies" className="text-primary underline">
+                Política de Cookies
+              </a>
+              .
             </p>
           </section>
 

@@ -12,25 +12,68 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CookieConsent } from "../components/cookie-consent";
+import logo from "../assets/wm-guincho-logo.webp";
+
+const PHONE = "+55 11 96944-9568";
+const PHONE_TEL = "+5511969449568";
+const WHATS = "https://wa.me/5511969449568?text=Preciso%20de%20guincho%20agora";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Página não encontrada</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          A página que você procura não existe ou foi movida.
-        </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+    <div className="flex min-h-screen flex-col bg-background">
+      <div className="hazard-bar h-1.5 w-full" aria-hidden="true" />
+      <div className="flex flex-1 items-center justify-center px-4 py-16">
+        <div className="max-w-lg text-center">
+          <img
+            src={logo}
+            alt="WM Guincho 24H — Zona Leste, São Paulo"
+            width={300}
+            height={200}
+            className="mx-auto h-auto w-32 object-contain"
+          />
+          <p className="mt-8 font-display text-7xl text-primary sm:text-8xl">404</p>
+          <h1 className="mt-2 font-display text-3xl uppercase text-foreground sm:text-4xl">
+            Página não encontrada
+          </h1>
+          <p className="mt-3 text-sm text-muted-foreground">
+            O endereço que você abriu não existe ou foi movido. Se precisa de guincho agora, fale
+            com um operador — o plantão é 24 horas.
+          </p>
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <a
+              href={`tel:${PHONE_TEL}`}
+              className="btn-emergency inline-flex items-center justify-center gap-2 rounded-md px-6 py-4 text-sm font-bold uppercase tracking-wide"
+            >
+              Ligar {PHONE}
+            </a>
+            <a
+              href={WHATS}
+              rel="noopener"
+              className="btn-blue inline-flex items-center justify-center gap-2 rounded-md px-6 py-4 text-sm font-bold uppercase tracking-wide"
+            >
+              Chamar no WhatsApp
+            </a>
+          </div>
+          <nav
+            aria-label="Atalhos"
+            className="mt-8 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm font-semibold"
           >
-            Voltar ao início
-          </Link>
+            <Link to="/" className="text-muted-foreground hover:text-primary">
+              Início
+            </Link>
+            <a href="/#servicos" className="text-muted-foreground hover:text-primary">
+              Serviços
+            </a>
+            <a href="/#zona-leste" className="text-muted-foreground hover:text-primary">
+              Zona Leste
+            </a>
+            <a href="/#faq" className="text-muted-foreground hover:text-primary">
+              Dúvidas
+            </a>
+          </nav>
         </div>
       </div>
+      <div className="hazard-bar h-1.5 w-full" aria-hidden="true" />
     </div>
   );
 }
@@ -88,6 +131,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "icon", type: "image/png", href: "/favicon.png" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
 
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },

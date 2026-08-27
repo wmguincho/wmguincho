@@ -103,7 +103,7 @@ export function CookieConsent() {
       <p className="mt-1 text-muted-foreground">
         Usamos cookies necessários para o site funcionar e, apenas com sua permissão, cookies
         analíticos e de marketing. Veja detalhes na{" "}
-        <a href="/politica-de-privacidade#cookies" className="text-primary underline">
+        <a href="/politica-de-cookies" className="text-primary underline">
           Política de Cookies
         </a>
         .
