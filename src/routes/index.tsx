@@ -462,7 +462,7 @@ function Index() {
                         <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-primary/15 text-primary">
                           <Icon className="h-4 w-4" aria-hidden="true" />
                         </span>
-                        <span className="whitespace-nowrap text-sm font-semibold text-white/90">
+                        <span className="whitespace-nowrap text-sm font-semibold text-white/90 first-letter:uppercase">
                           {title}
                         </span>
                       </li>
