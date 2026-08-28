@@ -347,16 +347,28 @@ function Index() {
             aria-label="Principal"
             className="hidden items-center gap-7 text-sm font-semibold lg:flex"
           >
-            <a className="text-white/80 transition-colors hover:text-primary" href="#servicos">
+            <a
+              className="relative py-2 text-white/80 transition-colors after:pointer-events-none after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-[width] after:duration-300 hover:text-primary hover:after:w-1/2"
+              href="#servicos"
+            >
               Serviços
             </a>
-            <a className="text-white/80 transition-colors hover:text-primary" href="#apreensao">
+            <a
+              className="relative py-2 text-white/80 transition-colors after:pointer-events-none after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-[width] after:duration-300 hover:text-primary hover:after:w-1/2"
+              href="#apreensao"
+            >
               Busca e apreensão
             </a>
-            <a className="text-white/80 transition-colors hover:text-primary" href="#zona-leste">
+            <a
+              className="relative py-2 text-white/80 transition-colors after:pointer-events-none after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-[width] after:duration-300 hover:text-primary hover:after:w-1/2"
+              href="#zona-leste"
+            >
               Zona Leste
             </a>
-            <a className="text-white/80 transition-colors hover:text-primary" href="#faq">
+            <a
+              className="relative py-2 text-white/80 transition-colors after:pointer-events-none after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-[width] after:duration-300 hover:text-primary hover:after:w-1/2"
+              href="#faq"
+            >
               Dúvidas
             </a>
           </nav>
@@ -364,7 +376,7 @@ function Index() {
             <a
               href={`tel:${PHONE_TEL}`}
               onClick={() => trackLead("call")}
-              className="btn-emergency hidden min-h-11 items-center gap-2 rounded-full px-4 py-2 text-sm font-bold uppercase tracking-wide hover:brightness-105 lg:inline-flex"
+              className="btn-emergency hidden min-h-11 items-center gap-2 rounded-full px-4 py-2 text-sm font-bold uppercase tracking-wide hover:scale-105 hover:brightness-105 lg:inline-flex"
             >
               <Phone className="h-4 w-4" aria-hidden="true" />
               {PHONE}
