@@ -110,7 +110,7 @@ export function MobileNav({
 
         <nav
           aria-label="Navegação mobile"
-          className="flex-1 divide-y divide-border overflow-y-auto border-y border-border"
+          className="flex-1 divide-y divide-white/10 overflow-y-auto border-y border-white/10"
         >
           {items.map(({ label, href, icon: Icon }) => (
             <a
