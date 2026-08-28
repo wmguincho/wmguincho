@@ -97,7 +97,7 @@ export function CookieConsent() {
     <div
       role="dialog"
       aria-label="Preferências de cookies"
-      className="fixed inset-x-3 bottom-3 z-[60] mx-auto max-w-xl rounded-lg border border-border bg-surface p-5 text-sm shadow-[0_20px_70px_-24px_oklch(0_0_0/0.9)] sm:inset-x-auto sm:right-4"
+      className="fixed inset-x-3 bottom-3 z-[70] mx-auto max-w-xl rounded-lg border border-border bg-surface p-5 text-sm shadow-[0_20px_70px_-24px_oklch(0_0_0/0.9)] sm:inset-x-auto sm:right-4"
     >
       <p className="font-semibold text-foreground">Usamos cookies</p>
       <p className="mt-1 text-muted-foreground">

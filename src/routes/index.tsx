@@ -360,15 +360,14 @@ function Index() {
               Dúvidas
             </a>
           </nav>
-          <div className="flex items-center gap-1.5 sm:gap-3">
+          <div className="flex items-center gap-3">
             <a
               href={`tel:${PHONE_TEL}`}
               onClick={() => trackLead("call")}
-              className="btn-emergency inline-flex min-h-11 items-center gap-2 rounded-md px-3 py-2 text-sm font-bold uppercase tracking-wide hover:brightness-105 sm:px-4"
+              className="btn-emergency hidden min-h-11 items-center gap-2 rounded-md px-4 py-2 text-sm font-bold uppercase tracking-wide hover:brightness-105 lg:inline-flex"
             >
               <Phone className="h-4 w-4" aria-hidden="true" />
-              <span className="hidden sm:inline">{PHONE}</span>
-              <span className="sm:hidden">Ligar</span>
+              {PHONE}
             </a>
             <MobileNav phone={PHONE} phoneTel={PHONE_TEL} whatsappUrl={WHATS} onLead={trackLead} />
           </div>
