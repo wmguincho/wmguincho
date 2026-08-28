@@ -413,19 +413,19 @@ function Index() {
                 <a
                   href={`tel:${PHONE_TEL}`}
                   onClick={() => trackLead("call")}
-                  className="btn-emergency inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold uppercase hover:-translate-y-0.5"
+                  className="btn-emergency inline-flex min-w-[15rem] items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold uppercase hover:-translate-y-0.5"
                 >
                   <Phone className="h-4 w-4" aria-hidden="true" />
-                  Ligar {PHONE}
+                  Ligar agora
                 </a>
                 <a
                   href={WHATS}
                   rel="noopener"
                   onClick={() => trackLead("whatsapp")}
-                  className="btn-whats inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold uppercase hover:-translate-y-0.5"
+                  className="btn-whats inline-flex min-w-[15rem] items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold uppercase hover:-translate-y-0.5"
                 >
                   <MessageCircle className="h-4 w-4" aria-hidden="true" />
-                  WhatsApp
+                  Conversar no WhatsApp
                 </a>
               </div>
               <dl className="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-border pt-6">
