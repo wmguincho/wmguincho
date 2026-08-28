@@ -23,13 +23,11 @@ const items: NavItem[] = [
 ];
 
 /**
- * Mobile navigation: an animated hamburger→X button (stroke-dasharray morph,
- * see styles.css) that opens a full-screen panel with a pure opacity/visibility
- * fade — the pattern used on upsites.digital, adapted to the WM Guincho palette.
- *
- * The panel is rendered through a portal on <body>: the site header uses
- * backdrop-blur, which creates a containing block that would otherwise trap a
- * position:fixed child and collapse the panel.
+ * Mobile navigation, upsites.digital style: a single animated button that
+ * morphs hamburger → X (stroke-dasharray, see styles.css) and toggles a
+ * full-screen panel that fades in. The same button opens and closes — it is
+ * never covered, because both the button and the panel are rendered through a
+ * portal on <body>, above the blur-backed header's stacking context.
  */
 export function MobileNav({
   phone,
@@ -63,105 +61,9 @@ export function MobileNav({
 
   const close = () => setOpen(false);
 
-  const panel = (
-    <div
-      id="menu-mobile"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Navegação"
-      className={`fixed inset-0 z-[80] flex flex-col bg-background transition-[opacity,visibility] duration-300 ease-out lg:hidden ${
-        open ? "visible opacity-100" : "invisible opacity-0"
-      }`}
-    >
-      <div className="hazard-bar h-1 w-full" aria-hidden="true" />
+  if (!mounted) return null;
 
-      <div className="flex items-center justify-between px-5 py-4">
-        <img
-          src={logo}
-          alt="WM Guincho 24H"
-          width={300}
-          height={200}
-          className="h-auto w-24 object-contain"
-        />
-        <button
-          type="button"
-          aria-label="Fechar menu de navegação"
-          onClick={close}
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-primary hover:text-primary"
-        >
-          <svg
-            width="22"
-            height="22"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2}
-            strokeLinecap="round"
-            aria-hidden="true"
-          >
-            <path d="M6 6l12 12M18 6L6 18" />
-          </svg>
-        </button>
-      </div>
-
-      <nav
-        aria-label="Navegação mobile"
-        className="flex-1 divide-y divide-border overflow-y-auto border-y border-border"
-      >
-        {items.map(({ label, href, icon: Icon }) => (
-          <a
-            key={href}
-            href={href}
-            tabIndex={open ? undefined : -1}
-            onClick={close}
-            className="group flex items-center gap-4 px-5 py-4 transition-colors hover:bg-surface"
-          >
-            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-primary/10 text-primary ring-1 ring-inset ring-primary/20 transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-              <Icon className="h-5 w-5" aria-hidden="true" />
-            </span>
-            <span className="flex-1 text-lg font-semibold text-foreground">{label}</span>
-            <ChevronRight
-              className="h-5 w-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary"
-              aria-hidden="true"
-            />
-          </a>
-        ))}
-      </nav>
-
-      <div className="space-y-3 px-5 pb-[calc(env(safe-area-inset-bottom)+1.25rem)] pt-5">
-        <a
-          href={whatsappUrl}
-          rel="noopener"
-          tabIndex={open ? undefined : -1}
-          onClick={() => {
-            onLead("whatsapp");
-            close();
-          }}
-          className="btn-blue flex min-h-14 items-center justify-center gap-2 rounded-md px-4 py-3 text-sm font-bold uppercase tracking-wide"
-        >
-          <MessageCircle className="h-4 w-4" aria-hidden="true" />
-          Chamar no WhatsApp
-        </a>
-        <a
-          href={`tel:${phoneTel}`}
-          tabIndex={open ? undefined : -1}
-          onClick={() => {
-            onLead("call");
-            close();
-          }}
-          className="btn-emergency flex min-h-14 items-center justify-center gap-2 rounded-md px-4 py-3 text-sm font-bold uppercase tracking-wide"
-        >
-          <Phone className="h-4 w-4" aria-hidden="true" />
-          Ligar {phone}
-        </a>
-        <p className="pt-1 text-center text-xs uppercase tracking-[0.18em] text-muted-foreground">
-          Plantão 24h · Base na Zona Leste
-        </p>
-      </div>
-    </div>
-  );
-
-  return (
+  return createPortal(
     <>
       <button
         type="button"
@@ -170,7 +72,7 @@ export function MobileNav({
         aria-expanded={open}
         aria-controls="menu-mobile"
         onClick={() => setOpen((v) => !v)}
-        className="relative z-[90] flex h-11 w-11 shrink-0 items-center justify-center text-primary lg:hidden"
+        className="fixed right-4 top-5 z-[90] flex h-11 w-11 items-center justify-center text-primary lg:hidden"
       >
         <svg width="30" height="30" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
           <path
@@ -185,7 +87,83 @@ export function MobileNav({
         </svg>
       </button>
 
-      {mounted ? createPortal(panel, document.body) : null}
-    </>
+      <div
+        id="menu-mobile"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navegação"
+        className={`fixed inset-0 z-[80] flex flex-col bg-background transition-[opacity,visibility] duration-300 ease-out lg:hidden ${
+          open ? "visible opacity-100" : "invisible opacity-0"
+        }`}
+      >
+        <div className="hazard-bar h-1 w-full" aria-hidden="true" />
+
+        <div className="px-5 py-4">
+          <img
+            src={logo}
+            alt="WM Guincho 24H"
+            width={300}
+            height={200}
+            className="h-auto w-24 object-contain"
+          />
+        </div>
+
+        <nav
+          aria-label="Navegação mobile"
+          className="flex-1 divide-y divide-border overflow-y-auto border-y border-border"
+        >
+          {items.map(({ label, href, icon: Icon }) => (
+            <a
+              key={href}
+              href={href}
+              tabIndex={open ? undefined : -1}
+              onClick={close}
+              className="group flex items-center gap-4 px-5 py-4 transition-colors hover:bg-surface"
+            >
+              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-primary/10 text-primary ring-1 ring-inset ring-primary/20 transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                <Icon className="h-5 w-5" aria-hidden="true" />
+              </span>
+              <span className="flex-1 text-lg font-semibold text-foreground">{label}</span>
+              <ChevronRight
+                className="h-5 w-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary"
+                aria-hidden="true"
+              />
+            </a>
+          ))}
+        </nav>
+
+        <div className="space-y-3 px-5 pb-[calc(env(safe-area-inset-bottom)+1.25rem)] pt-5">
+          <a
+            href={whatsappUrl}
+            rel="noopener"
+            tabIndex={open ? undefined : -1}
+            onClick={() => {
+              onLead("whatsapp");
+              close();
+            }}
+            className="btn-blue flex min-h-14 items-center justify-center gap-2 rounded-md px-4 py-3 text-sm font-bold uppercase tracking-wide"
+          >
+            <MessageCircle className="h-4 w-4" aria-hidden="true" />
+            Chamar no WhatsApp
+          </a>
+          <a
+            href={`tel:${phoneTel}`}
+            tabIndex={open ? undefined : -1}
+            onClick={() => {
+              onLead("call");
+              close();
+            }}
+            className="btn-emergency flex min-h-14 items-center justify-center gap-2 rounded-md px-4 py-3 text-sm font-bold uppercase tracking-wide"
+          >
+            <Phone className="h-4 w-4" aria-hidden="true" />
+            Ligar {phone}
+          </a>
+          <p className="pt-1 text-center text-xs uppercase tracking-[0.18em] text-muted-foreground">
+            Plantão 24h · Base na Zona Leste
+          </p>
+        </div>
+      </div>
+    </>,
+    document.body,
   );
 }
