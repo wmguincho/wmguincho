@@ -18,8 +18,6 @@ import {
   FileSearch,
   Ruler,
   Navigation,
-  BadgeCheck,
-  CreditCard,
 } from "lucide-react";
 import operadorImg from "@/assets/operador.webp";
 import operadorOg from "@/assets/operador.jpg";
@@ -156,13 +154,6 @@ const areas = [
   "São Bernardo",
   "Barueri",
   "Rodovias e marginais",
-];
-
-const trustWidgets = [
-  { icon: Clock, label: "Chegada rápida", value: "15 a 30 min na ZL" },
-  { icon: MessageCircle, label: "WhatsApp humano", value: "Orçamento na hora" },
-  { icon: CreditCard, label: "Preço fechado", value: "Pix, débito e crédito" },
-  { icon: BadgeCheck, label: "Plantão seguro", value: "24h, todos os dias" },
 ];
 
 export const Route = createFileRoute("/")({
@@ -402,7 +393,7 @@ function Index() {
             className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/30"
             aria-hidden="true"
           />
-          <div className="relative mx-auto grid max-w-6xl gap-10 px-4 pb-20 pt-32 md:pb-24 md:pt-40">
+          <div className="relative mx-auto grid max-w-6xl gap-12 px-4 pb-14 pt-40 md:pb-16 md:pt-52">
             <div className="max-w-2xl">
               <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
                 <span className="pulse-ring inline-block h-2 w-2 rounded-full bg-primary" />
@@ -454,30 +445,32 @@ function Index() {
                 ))}
               </dl>
             </div>
-          </div>
-        </section>
 
-        <section
-          aria-label="Destaques do atendimento WM Guincho"
-          className="border-y border-border bg-surface"
-        >
-          <div className="mx-auto grid max-w-6xl gap-px overflow-hidden px-4 py-4 sm:grid-cols-2 lg:grid-cols-4">
-            {trustWidgets.map(({ icon: Icon, label, value }) => (
-              <div
-                key={label}
-                className="flex items-center gap-4 rounded-md border border-border bg-background/70 p-4"
-              >
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-primary/15 text-primary">
-                  <Icon className="h-5 w-5" aria-hidden="true" />
-                </span>
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">
-                    {label}
-                  </p>
-                  <p className="font-semibold text-foreground">{value}</p>
-                </div>
+            <div className="marquee w-full" aria-label="Serviços da WM Guincho">
+              <div className="marquee-track">
+                {[0, 1].map((group) => (
+                  <ul
+                    key={group}
+                    aria-hidden={group === 1}
+                    className="flex shrink-0 items-center gap-3 pr-3"
+                  >
+                    {services.map(({ icon: Icon, title }) => (
+                      <li
+                        key={title}
+                        className="flex shrink-0 items-center gap-3 rounded-full border border-white/10 bg-white/5 px-5 py-3"
+                      >
+                        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-primary/15 text-primary">
+                          <Icon className="h-4 w-4" aria-hidden="true" />
+                        </span>
+                        <span className="whitespace-nowrap text-sm font-semibold text-white/90">
+                          {title}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </section>
 
