@@ -123,7 +123,7 @@ export function MobileNav({
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-primary/10 text-primary ring-1 ring-inset ring-primary/20 transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                 <Icon className="h-5 w-5" aria-hidden="true" />
               </span>
-              <span className="flex-1 text-base font-semibold text-foreground">{label}</span>
+              <span className="flex-1 text-base font-semibold capitalize text-foreground">{label}</span>
               <ChevronRight
                 className="h-5 w-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary"
                 aria-hidden="true"
