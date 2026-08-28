@@ -1,0 +1,13 @@
+{
+  "name": "WM Guincho 24HR",
+  "short_name": "WM Guincho",
+  "description": "Guincho asa-delta 24h na Zona Leste de São Paulo.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#0b1220",
+  "theme_color": "#0b1220",
+  "icons": [
+    { "src": "/favicon-32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
