@@ -25,7 +25,6 @@ import logo from "@/assets/wm-guincho-logo.webp";
 import { openCookiePreferences } from "@/components/cookie-consent";
 import { MobileNav } from "@/components/mobile-nav";
 import { Reveal } from "@/components/reveal";
-import { CountUp } from "@/components/count-up";
 
 const SITE_URL = "https://wmguinchodaleste.com.br";
 const HOME_URL = `${SITE_URL}/`;
@@ -409,11 +408,11 @@ function Index() {
                 veículos financiados em busca e apreensão e atendimento em garagens e ruas onde
                 caminhões-guincho maiores não entram.
               </p>
-              <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+              <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-start">
                 <a
                   href={`tel:${PHONE_TEL}`}
                   onClick={() => trackLead("call")}
-                  className="btn-emergency inline-flex min-w-[15rem] items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold uppercase hover:-translate-y-0.5"
+                  className="btn-emergency inline-flex min-w-[15rem] items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold uppercase hover:-translate-y-0.5"
                 >
                   <Phone className="h-4 w-4" aria-hidden="true" />
                   Ligar agora
@@ -422,28 +421,12 @@ function Index() {
                   href={WHATS}
                   rel="noopener"
                   onClick={() => trackLead("whatsapp")}
-                  className="btn-whats inline-flex min-w-[15rem] items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold uppercase hover:-translate-y-0.5"
+                  className="btn-whats inline-flex min-w-[15rem] items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold uppercase hover:-translate-y-0.5"
                 >
                   <MessageCircle className="h-4 w-4" aria-hidden="true" />
                   Conversar no WhatsApp
                 </a>
               </div>
-              <dl className="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-border pt-6">
-                {(
-                  [
-                    ["15 min", "na Zona Leste"],
-                    ["24/7", "todos os dias"],
-                    ["+12 mil", "atendimentos"],
-                  ] as const
-                ).map(([k, v]) => (
-                  <div key={v}>
-                    <dt className="font-display text-2xl text-primary">
-                      {k.includes("/") ? k : <CountUp value={k} />}
-                    </dt>
-                    <dd className="text-xs uppercase tracking-wider text-muted-foreground">{v}</dd>
-                  </div>
-                ))}
-              </dl>
             </div>
 
             <div className="marquee w-full" aria-label="Serviços da WM Guincho">
@@ -753,19 +736,19 @@ function Index() {
               <a
                 href={`tel:${PHONE_TEL}`}
                 onClick={() => trackLead("call")}
-                className="btn-emergency inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold uppercase hover:-translate-y-0.5"
+                className="btn-emergency inline-flex min-w-[15rem] items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold uppercase hover:-translate-y-0.5"
               >
                 <Phone className="h-4 w-4" aria-hidden="true" />
-                {PHONE}
+                Ligar agora
               </a>
               <a
                 href={WHATS}
                 rel="noopener"
                 onClick={() => trackLead("whatsapp")}
-                className="btn-whats inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold uppercase hover:-translate-y-0.5"
+                className="btn-whats inline-flex min-w-[15rem] items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold uppercase hover:-translate-y-0.5"
               >
                 <MessageCircle className="h-4 w-4" aria-hidden="true" />
-                Chamar no WhatsApp
+                Conversar no WhatsApp
               </a>
             </div>
           </div>
