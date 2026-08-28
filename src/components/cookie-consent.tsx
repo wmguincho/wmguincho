@@ -50,13 +50,48 @@ function injectGtmIfNeeded(consent: ConsentState) {
   document.head.appendChild(script);
 }
 
-const choiceButton =
-  "rounded-md border border-border px-4 py-2 text-xs font-bold uppercase tracking-wide text-foreground transition-colors hover:border-primary hover:text-primary";
+const btnPrimary =
+  "rounded-md bg-primary px-4 py-2 text-[0.82rem] font-bold text-primary-foreground transition-[filter] hover:brightness-110";
+const btnGhost =
+  "rounded-md border-[1.5px] border-border bg-transparent px-4 py-2 text-[0.82rem] font-bold text-foreground transition-colors hover:border-muted-foreground";
+
+function Switch({
+  checked,
+  disabled,
+  onChange,
+  label,
+}: {
+  checked: boolean;
+  disabled?: boolean;
+  onChange?: (v: boolean) => void;
+  label: string;
+}) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={checked}
+      aria-label={label}
+      disabled={disabled}
+      onClick={() => onChange?.(!checked)}
+      className={`relative h-[26px] w-[46px] shrink-0 rounded-full transition-colors ${
+        checked ? "bg-primary" : "bg-border"
+      } ${disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"}`}
+    >
+      <span
+        className={`absolute left-[3px] top-[3px] h-5 w-5 rounded-full transition-transform ${
+          checked ? "translate-x-5 bg-white" : "translate-x-0 bg-foreground"
+        }`}
+      />
+    </button>
+  );
+}
 
 export function CookieConsent() {
   const [mounted, setMounted] = useState(false);
-  const [visible, setVisible] = useState(false);
-  const [customizing, setCustomizing] = useState(false);
+  const [bannerVisible, setBannerVisible] = useState(false);
+  const [bannerShown, setBannerShown] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [analytics, setAnalytics] = useState(false);
   const [marketing, setMarketing] = useState(false);
 
@@ -69,119 +104,150 @@ export function CookieConsent() {
       setAnalytics(stored.analytics);
       setMarketing(stored.marketing);
     } else {
-      setVisible(true);
+      setBannerVisible(true);
     }
 
     const reopen = () => {
       const current = readStoredConsent();
       setAnalytics(current?.analytics ?? false);
       setMarketing(current?.marketing ?? false);
-      setCustomizing(true);
-      setVisible(true);
+      setModalOpen(true);
     };
     window.addEventListener(REOPEN_EVENT, reopen);
     return () => window.removeEventListener(REOPEN_EVENT, reopen);
   }, []);
 
+  useEffect(() => {
+    if (!bannerVisible) return;
+    const id = requestAnimationFrame(() => setBannerShown(true));
+    return () => cancelAnimationFrame(id);
+  }, [bannerVisible]);
+
+  function hideBanner() {
+    setBannerShown(false);
+    window.setTimeout(() => setBannerVisible(false), 350);
+  }
+
   function commit(consent: ConsentState) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...consent, ts: Date.now() }));
     pushConsentUpdate(consent);
     injectGtmIfNeeded(consent);
-    setVisible(false);
-    setCustomizing(false);
+    setAnalytics(consent.analytics);
+    setMarketing(consent.marketing);
+    setModalOpen(false);
+    hideBanner();
   }
 
-  if (!mounted || !visible) return null;
+  if (!mounted) return null;
 
   return (
-    <div
-      role="dialog"
-      aria-label="Preferências de cookies"
-      className="fixed inset-x-3 bottom-3 z-[70] mx-auto max-w-xl rounded-lg border border-border bg-surface p-5 text-sm shadow-[0_20px_70px_-24px_oklch(0_0_0/0.9)] sm:inset-x-auto sm:right-4"
-    >
-      <p className="font-semibold text-foreground">Usamos cookies</p>
-      <p className="mt-1 text-muted-foreground">
-        Usamos cookies necessários para o site funcionar e, apenas com sua permissão, cookies
-        analíticos e de marketing. Veja detalhes na{" "}
-        <a href="/politica-de-cookies" className="text-primary underline">
-          Política de Cookies
-        </a>
-        .
-      </p>
-
-      {customizing && (
-        <div className="mt-4 space-y-3 border-t border-border pt-4">
-          <label className="flex items-center justify-between gap-3">
-            <span>
-              <span className="block font-medium text-foreground">Necessários</span>
-              <span className="block text-xs text-muted-foreground">
-                Sempre ativos — indispensáveis para o site funcionar.
-              </span>
-            </span>
-            <input
-              type="checkbox"
-              checked
-              disabled
-              aria-label="Cookies necessários, sempre ativos"
-            />
-          </label>
-          <label className="flex items-center justify-between gap-3">
-            <span>
-              <span className="block font-medium text-foreground">Analíticos</span>
-              <span className="block text-xs text-muted-foreground">
-                Ajudam a entender como o site é usado.
-              </span>
-            </span>
-            <input
-              type="checkbox"
-              checked={analytics}
-              onChange={(e) => setAnalytics(e.target.checked)}
-              aria-label="Cookies analíticos"
-            />
-          </label>
-          <label className="flex items-center justify-between gap-3">
-            <span>
-              <span className="block font-medium text-foreground">Marketing</span>
-              <span className="block text-xs text-muted-foreground">
-                Usados para anúncios mais relevantes.
-              </span>
-            </span>
-            <input
-              type="checkbox"
-              checked={marketing}
-              onChange={(e) => setMarketing(e.target.checked)}
-              aria-label="Cookies de marketing"
-            />
-          </label>
-        </div>
-      )}
-
-      <div className="mt-4 flex flex-wrap gap-2">
-        {customizing ? (
-          <button onClick={() => commit({ analytics, marketing })} className={choiceButton}>
-            Salvar preferências
-          </button>
-        ) : (
-          <>
+    <>
+      {bannerVisible && (
+        <div
+          role="dialog"
+          aria-live="polite"
+          aria-label="Aviso de cookies"
+          className={`fixed bottom-5 left-5 z-[70] flex max-w-[380px] flex-col gap-3 rounded-lg border border-border bg-surface p-4 shadow-[0_20px_70px_-24px_oklch(0_0_0/0.9)] transition-transform duration-[350ms] ease-out max-[640px]:inset-x-0 max-[640px]:bottom-0 max-[640px]:max-w-none max-[640px]:rounded-none max-[640px]:border-x-0 max-[640px]:border-b-0 max-[640px]:p-4 max-[640px]:pb-[calc(1rem+env(safe-area-inset-bottom))] ${
+            bannerShown ? "translate-y-0" : "translate-y-[150%]"
+          }`}
+        >
+          <p className="text-[0.82rem] leading-relaxed text-muted-foreground">
+            Usamos cookies para melhorar sua experiência.{" "}
+            <a href="/politica-de-cookies" className="text-primary underline">
+              Saiba mais
+            </a>
+            .
+          </p>
+          <div className="flex flex-wrap items-center gap-2.5">
             <button
               onClick={() => commit({ analytics: true, marketing: true })}
-              className={choiceButton}
+              className={`${btnPrimary} max-[480px]:flex-1`}
             >
-              Aceitar todos
+              Aceitar
             </button>
             <button
               onClick={() => commit({ analytics: false, marketing: false })}
-              className={choiceButton}
+              className={`${btnGhost} max-[480px]:flex-1`}
             >
-              Rejeitar todos
+              Rejeitar
             </button>
-            <button onClick={() => setCustomizing(true)} className={choiceButton}>
+            <button
+              onClick={() => setModalOpen(true)}
+              className="text-[0.85rem] font-semibold text-muted-foreground underline"
+            >
               Personalizar
             </button>
-          </>
-        )}
-      </div>
-    </div>
+          </div>
+        </div>
+      )}
+
+      {modalOpen && (
+        <div
+          className="fixed inset-0 z-[75] flex items-center justify-center bg-[oklch(0.12_0.02_250/0.75)] p-5"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setModalOpen(false);
+          }}
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Preferências de cookies"
+            className="max-h-[85vh] w-full max-w-[520px] overflow-y-auto rounded-lg border border-border bg-surface p-6 sm:p-8"
+          >
+            <h3 className="mb-2 font-display text-xl text-foreground">Preferências de cookies</h3>
+            <p className="mb-6 text-sm text-muted-foreground">
+              Escolha quais categorias de cookies deseja permitir. Cookies necessários não podem ser
+              desativados pois garantem o funcionamento básico do site.
+            </p>
+
+            <div className="flex items-start justify-between gap-4 border-b border-border/60 py-4">
+              <div>
+                <h4 className="text-[0.98rem] font-semibold text-foreground">Necessários</h4>
+                <p className="mt-1 text-[0.84rem] text-muted-foreground">
+                  Essenciais para o funcionamento do site (navegação, segurança). Sempre ativos.
+                </p>
+              </div>
+              <Switch checked disabled label="Cookies necessários, sempre ativos" />
+            </div>
+
+            <div className="flex items-start justify-between gap-4 border-b border-border/60 py-4">
+              <div>
+                <h4 className="text-[0.98rem] font-semibold text-foreground">Analíticos</h4>
+                <p className="mt-1 text-[0.84rem] text-muted-foreground">
+                  Ajudam a entender como o site é utilizado, de forma agregada e anônima.
+                </p>
+              </div>
+              <Switch checked={analytics} onChange={setAnalytics} label="Cookies analíticos" />
+            </div>
+
+            <div className="flex items-start justify-between gap-4 border-b border-border/60 py-4">
+              <div>
+                <h4 className="text-[0.98rem] font-semibold text-foreground">Marketing</h4>
+                <p className="mt-1 text-[0.84rem] text-muted-foreground">
+                  Usados para personalizar anúncios e medir a eficácia de campanhas.
+                </p>
+              </div>
+              <Switch checked={marketing} onChange={setMarketing} label="Cookies de marketing" />
+            </div>
+
+            <div className="mt-6 flex gap-3">
+              <button
+                onClick={() => setModalOpen(false)}
+                className={`${btnGhost} flex-1 py-3 text-sm`}
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={() => commit({ analytics, marketing })}
+                className={`${btnPrimary} flex-1 py-3 text-sm`}
+              >
+                Salvar preferências
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 

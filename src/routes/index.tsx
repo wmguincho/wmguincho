@@ -364,7 +364,7 @@ function Index() {
             <a
               href={`tel:${PHONE_TEL}`}
               onClick={() => trackLead("call")}
-              className="btn-emergency hidden min-h-11 items-center gap-2 rounded-md px-4 py-2 text-sm font-bold uppercase tracking-wide hover:brightness-105 lg:inline-flex"
+              className="btn-emergency hidden min-h-11 items-center gap-2 rounded-full px-4 py-2 text-sm font-bold uppercase tracking-wide hover:brightness-105 lg:inline-flex"
             >
               <Phone className="h-4 w-4" aria-hidden="true" />
               {PHONE}
@@ -396,7 +396,7 @@ function Index() {
                 <span className="pulse-ring inline-block h-2 w-2 rounded-full bg-primary" />
                 Base na Zona Leste — 24h
               </p>
-              <h1 className="font-display text-5xl uppercase sm:text-7xl">
+              <h1 className="font-display text-3xl uppercase sm:text-5xl">
                 Guincho 24 horas na
                 <br />
                 <span className="text-gradient-blue">Zona Leste de São Paulo</span>
@@ -406,22 +406,22 @@ function Index() {
                 veículos financiados em busca e apreensão e atendimento em garagens e ruas onde
                 caminhões-guincho maiores não entram.
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
                 <a
                   href={`tel:${PHONE_TEL}`}
                   onClick={() => trackLead("call")}
-                  className="btn-emergency inline-flex items-center justify-center gap-2 rounded-md px-7 py-4 text-base font-bold uppercase tracking-wide hover:-translate-y-0.5"
+                  className="btn-emergency inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold uppercase hover:-translate-y-0.5"
                 >
-                  <Phone className="h-5 w-5" aria-hidden="true" />
+                  <Phone className="h-4 w-4" aria-hidden="true" />
                   Ligar {PHONE}
                 </a>
                 <a
                   href={WHATS}
                   rel="noopener"
                   onClick={() => trackLead("whatsapp")}
-                  className="inline-flex items-center justify-center gap-2 rounded-md border border-border bg-surface px-7 py-4 text-base font-bold uppercase tracking-wide transition-colors hover:border-primary hover:text-primary"
+                  className="btn-whats inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold uppercase hover:-translate-y-0.5"
                 >
-                  <MessageCircle className="h-5 w-5" aria-hidden="true" />
+                  <MessageCircle className="h-4 w-4" aria-hidden="true" />
                   WhatsApp
                 </a>
               </div>
@@ -434,7 +434,7 @@ function Index() {
                   ] as const
                 ).map(([k, v]) => (
                   <div key={v}>
-                    <dt className="font-display text-3xl text-primary">
+                    <dt className="font-display text-2xl text-primary">
                       {k.includes("/") ? k : <CountUp value={k} />}
                     </dt>
                     <dd className="text-xs uppercase tracking-wider text-muted-foreground">{v}</dd>
@@ -476,7 +476,7 @@ function Index() {
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-primary-on-light">
                 Serviços
               </p>
-              <h2 className="mt-3 font-display text-4xl uppercase sm:text-5xl">
+              <h2 className="mt-3 font-display text-2xl uppercase sm:text-3xl">
                 Socorro completo para o seu veículo
               </h2>
               <p className="mt-4 text-light-muted">
@@ -497,7 +497,7 @@ function Index() {
                   <span className="mb-5 grid h-12 w-12 place-items-center rounded-md bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                     <Icon className="h-6 w-6" aria-hidden="true" />
                   </span>
-                  <h3 className="font-display text-2xl uppercase">{title}</h3>
+                  <h3 className="font-display text-lg uppercase sm:text-xl">{title}</h3>
                   <p className="mt-2 text-sm text-light-muted">{desc}</p>
                 </Reveal>
               ))}
@@ -513,7 +513,7 @@ function Index() {
                 <FileSearch className="h-4 w-4" aria-hidden="true" />
                 Frota, bancos e financeiras
               </span>
-              <h2 className="mt-5 font-display text-4xl uppercase">
+              <h2 className="mt-5 font-display text-2xl uppercase sm:text-3xl">
                 Recuperação de veículos <span className="text-gradient-blue">financiados</span>
               </h2>
               <p className="mt-4 text-muted-foreground">
@@ -543,7 +543,7 @@ function Index() {
                 <Ruler className="h-4 w-4" aria-hidden="true" />
                 Onde o guincho grande não entra
               </span>
-              <h2 className="mt-5 font-display text-4xl uppercase">
+              <h2 className="mt-5 font-display text-2xl uppercase sm:text-3xl">
                 Locais de <span className="text-gradient-amber">difícil acesso</span>
               </h2>
               <p className="mt-4 text-muted-foreground">
@@ -571,22 +571,24 @@ function Index() {
         </section>
 
         {/* COMO FUNCIONA */}
-        <section id="como-funciona" className="border-y border-border bg-surface">
+        <section id="como-funciona" className="panel-light border-y">
           <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 lg:grid-cols-2">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.25em] text-primary">
+              <p className="text-xs font-bold uppercase tracking-[0.25em] text-primary-on-light">
                 Como funciona
               </p>
-              <h2 className="mt-3 font-display text-4xl uppercase sm:text-5xl">
+              <h2 className="mt-3 font-display text-2xl uppercase sm:text-3xl">
                 Três passos e pronto
               </h2>
               <ol className="mt-8 space-y-6">
                 {steps.map((s) => (
                   <li key={s.n} className="flex gap-5">
-                    <span className="font-display text-4xl text-primary/50">{s.n}</span>
+                    <span className="font-display text-2xl text-primary-on-light sm:text-3xl">
+                      {s.n}
+                    </span>
                     <div>
-                      <h3 className="font-display text-2xl uppercase">{s.t}</h3>
-                      <p className="mt-1 text-sm text-muted-foreground">{s.d}</p>
+                      <h3 className="font-display text-lg uppercase sm:text-xl">{s.t}</h3>
+                      <p className="mt-1 text-sm text-light-muted">{s.d}</p>
                     </div>
                   </li>
                 ))}
@@ -599,14 +601,14 @@ function Index() {
               height={768}
               loading="lazy"
               decoding="async"
-              className="rounded-lg border border-border object-cover"
+              className="rounded-lg border border-light-border object-cover"
             />
           </div>
         </section>
 
         {/* DIFERENCIAIS */}
         <section className="mx-auto max-w-6xl px-4 py-20">
-          <h2 className="font-display text-4xl uppercase sm:text-5xl">Por que a WM</h2>
+          <h2 className="font-display text-2xl uppercase sm:text-3xl">Por que a WM</h2>
           <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
@@ -641,7 +643,7 @@ function Index() {
             <p className="text-xs font-bold uppercase tracking-[0.25em] text-primary-on-light">
               Zona Leste • São Paulo
             </p>
-            <h2 className="mt-3 font-display text-4xl uppercase sm:text-5xl">
+            <h2 className="mt-3 font-display text-2xl uppercase sm:text-3xl">
               Somos da Zona Leste, atendemos toda a região
             </h2>
             <p className="mt-4 max-w-2xl text-light-muted">
@@ -650,7 +652,9 @@ function Index() {
               a Grande São Paulo e as principais rodovias e marginais.
             </p>
 
-            <h3 className="mt-10 font-display text-2xl uppercase">Bairros da Zona Leste</h3>
+            <h3 className="mt-10 font-display text-lg uppercase sm:text-xl">
+              Bairros da Zona Leste
+            </h3>
             <ul className="mt-4 flex flex-wrap gap-3">
               {bairrosZL.map((b) => (
                 <li
@@ -663,7 +667,7 @@ function Index() {
               ))}
             </ul>
 
-            <h3 className="mt-10 font-display text-2xl uppercase">Também atendemos</h3>
+            <h3 className="mt-10 font-display text-lg uppercase sm:text-xl">Também atendemos</h3>
             <ul className="mt-4 flex flex-wrap gap-3">
               {areas.map((a) => (
                 <li
@@ -680,7 +684,7 @@ function Index() {
 
         {/* DEPOIMENTOS */}
         <section className="mx-auto max-w-6xl px-4 py-20">
-          <h2 className="font-display text-4xl uppercase sm:text-5xl">Quem já foi socorrido</h2>
+          <h2 className="font-display text-2xl uppercase sm:text-3xl">Quem já foi socorrido</h2>
           <ul className="mt-10 grid gap-4 md:grid-cols-3">
             {[
               [
@@ -712,7 +716,7 @@ function Index() {
         {/* FAQ — container branco */}
         <section id="faq" className="panel-light scroll-mt-24 border-y">
           <div className="mx-auto max-w-3xl px-4 py-20">
-            <h2 className="font-display text-4xl uppercase sm:text-5xl">Dúvidas frequentes</h2>
+            <h2 className="font-display text-2xl uppercase sm:text-3xl">Dúvidas frequentes</h2>
             <div className="mt-8 divide-y divide-light-border overflow-hidden rounded-lg border border-light-border px-5">
               {faqs.map((f) => (
                 <details key={f.q} className="group py-5">
@@ -733,29 +737,29 @@ function Index() {
         <section className="relative overflow-hidden">
           <div className="hazard-bar h-1.5 w-full" aria-hidden="true" />
           <div className="mx-auto max-w-4xl px-4 py-20 text-center">
-            <h2 className="font-display text-4xl uppercase sm:text-6xl">
+            <h2 className="font-display text-3xl uppercase sm:text-4xl">
               Parado na estrada? <span className="text-gradient-blue">Chame agora.</span>
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
               Guincho 24 horas com base na Zona Leste de São Paulo. Fale com um operador de verdade
               e resolva em minutos.
             </p>
-            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
                 href={`tel:${PHONE_TEL}`}
                 onClick={() => trackLead("call")}
-                className="btn-emergency inline-flex items-center justify-center gap-2 rounded-md px-8 py-4 text-base font-bold uppercase tracking-wide hover:-translate-y-0.5"
+                className="btn-emergency inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold uppercase hover:-translate-y-0.5"
               >
-                <Phone className="h-5 w-5" aria-hidden="true" />
+                <Phone className="h-4 w-4" aria-hidden="true" />
                 {PHONE}
               </a>
               <a
                 href={WHATS}
                 rel="noopener"
                 onClick={() => trackLead("whatsapp")}
-                className="btn-blue inline-flex items-center justify-center gap-2 rounded-md px-8 py-4 text-base font-bold uppercase tracking-wide hover:-translate-y-0.5"
+                className="btn-whats inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold uppercase hover:-translate-y-0.5"
               >
-                <MessageCircle className="h-5 w-5" aria-hidden="true" />
+                <MessageCircle className="h-4 w-4" aria-hidden="true" />
                 Chamar no WhatsApp
               </a>
             </div>
@@ -786,7 +790,7 @@ function Index() {
           </div>
 
           <nav aria-label="Rodapé" className="text-sm">
-            <p className="font-display text-lg uppercase text-foreground">Navegação</p>
+            <p className="text-sm font-bold uppercase tracking-wide text-foreground">Navegação</p>
             <ul className="mt-4 space-y-2">
               <li>
                 <a href="#servicos" className="text-muted-foreground hover:text-primary">
@@ -812,7 +816,9 @@ function Index() {
           </nav>
 
           <div className="text-sm">
-            <p className="font-display text-lg uppercase text-foreground">Atendimento 24h</p>
+            <p className="text-sm font-bold uppercase tracking-wide text-foreground">
+              Atendimento 24h
+            </p>
             <ul className="mt-4 space-y-2">
               <li>
                 <a
@@ -872,42 +878,6 @@ function Index() {
           </div>
         </div>
       </footer>
-
-      <div
-        className={`fixed inset-x-3 bottom-3 z-50 mx-auto max-w-2xl overflow-hidden rounded-t-lg rounded-b-md border border-white/10 bg-background/95 shadow-[0_20px_70px_-24px_oklch(0_0_0/0.9)] backdrop-blur-xl transition-all duration-300 ${
-          isScrolled ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-8 opacity-0"
-        }`}
-        aria-label="Contato rápido"
-      >
-        <div className="hazard-bar h-1 w-full" aria-hidden="true" />
-        <div className="grid grid-cols-2 gap-px bg-border sm:grid-cols-[1fr_1.1fr_1.1fr]">
-          <div className="hidden bg-surface px-4 py-3 sm:block">
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">
-              Plantão 24h
-            </p>
-            <p className="text-sm text-muted-foreground">Operador pronto na Zona Leste</p>
-          </div>
-          <a
-            href={`tel:${PHONE_TEL}`}
-            onClick={() => trackLead("call")}
-            className="btn-emergency flex min-h-14 items-center justify-center gap-2 px-4 py-3 text-sm font-bold uppercase"
-          >
-            <Phone className="h-4 w-4" aria-hidden="true" />
-            Ligar agora
-          </a>
-          <a
-            href={WHATS}
-            rel="noopener"
-            onClick={() => trackLead("whatsapp")}
-            className="btn-blue flex min-h-14 items-center justify-center gap-2 px-4 py-3 text-sm font-bold uppercase"
-          >
-            <MessageCircle className="h-4 w-4" aria-hidden="true" />
-            <span className="hidden min-[430px]:inline">Chamar no WhatsApp</span>
-            <span className="min-[430px]:hidden">WhatsApp</span>
-          </a>
-        </div>
-      </div>
-      <div className="h-20 sm:h-0" aria-hidden="true" />
     </div>
   );
 }

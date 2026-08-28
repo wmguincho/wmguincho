@@ -31,8 +31,8 @@ function NotFoundComponent() {
             height={200}
             className="mx-auto h-auto w-32 object-contain"
           />
-          <p className="mt-8 font-display text-7xl text-primary sm:text-8xl">404</p>
-          <h1 className="mt-2 font-display text-3xl uppercase text-foreground sm:text-4xl">
+          <p className="mt-8 font-display text-6xl text-primary sm:text-7xl">404</p>
+          <h1 className="mt-2 font-display text-2xl uppercase text-foreground sm:text-3xl">
             Página não encontrada
           </h1>
           <p className="mt-3 text-sm text-muted-foreground">

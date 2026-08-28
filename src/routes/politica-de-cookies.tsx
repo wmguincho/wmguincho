@@ -30,10 +30,10 @@ function PoliticaDeCookies() {
           ← Voltar ao início
         </a>
 
-        <h1 className="mt-6 font-display text-4xl uppercase sm:text-5xl">Política de Cookies</h1>
+        <h1 className="mt-6 font-display text-3xl uppercase sm:text-4xl">Política de Cookies</h1>
         <p className="mt-2 text-sm text-muted-foreground">Última atualização: 27/08/2026</p>
 
-        <div className="prose-invert mt-10 space-y-8 text-sm leading-relaxed text-muted-foreground [&_h2]:mt-10 [&_h2]:mb-3 [&_h2]:font-display [&_h2]:text-2xl [&_h2]:uppercase [&_h2]:text-foreground [&_h2]:tracking-wide [&_li]:mb-1.5 [&_p]:mb-3 [&_ul]:list-disc [&_ul]:pl-5">
+        <div className="prose-invert mt-10 space-y-8 text-sm leading-relaxed text-muted-foreground [&_h2]:mt-10 [&_h2]:mb-3 [&_h2]:font-display [&_h2]:text-xl [&_h2]:uppercase [&_h2]:text-foreground [&_h2]:tracking-wide [&_li]:mb-1.5 [&_p]:mb-3 [&_ul]:list-disc [&_ul]:pl-5">
           <section>
             <h2>1. O que são cookies</h2>
             <p>

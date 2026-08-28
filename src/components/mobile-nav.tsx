@@ -120,10 +120,10 @@ export function MobileNav({
               onClick={close}
               className="group flex items-center gap-4 px-5 py-4 transition-colors hover:bg-surface"
             >
-              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-primary/10 text-primary ring-1 ring-inset ring-primary/20 transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-primary/10 text-primary ring-1 ring-inset ring-primary/20 transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                 <Icon className="h-5 w-5" aria-hidden="true" />
               </span>
-              <span className="flex-1 text-lg font-semibold text-foreground">{label}</span>
+              <span className="flex-1 text-base font-semibold text-foreground">{label}</span>
               <ChevronRight
                 className="h-5 w-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary"
                 aria-hidden="true"
@@ -141,7 +141,7 @@ export function MobileNav({
               onLead("whatsapp");
               close();
             }}
-            className="btn-blue flex min-h-14 items-center justify-center gap-2 rounded-md px-4 py-3 text-sm font-bold uppercase tracking-wide"
+            className="btn-whats flex min-h-14 items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-bold uppercase tracking-wide"
           >
             <MessageCircle className="h-4 w-4" aria-hidden="true" />
             Chamar no WhatsApp
@@ -153,7 +153,7 @@ export function MobileNav({
               onLead("call");
               close();
             }}
-            className="btn-emergency flex min-h-14 items-center justify-center gap-2 rounded-md px-4 py-3 text-sm font-bold uppercase tracking-wide"
+            className="btn-emergency flex min-h-14 items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-bold uppercase tracking-wide"
           >
             <Phone className="h-4 w-4" aria-hidden="true" />
             Ligar {phone}
