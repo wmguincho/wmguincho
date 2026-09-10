@@ -16,6 +16,7 @@ import {
   CheckCircle2,
   Star,
   FileSearch,
+  Gavel,
   Ruler,
   Navigation,
 } from "lucide-react";
@@ -48,6 +49,11 @@ const services = [
     title: "Locais de difícil acesso",
     desc: "Garagens baixas, vielas, ruas estreitas e subsolos onde o guincho grande não entra. Equipamento compacto próprio.",
     highlight: true,
+  },
+  {
+    icon: Gavel,
+    title: "Retirada de leilão",
+    desc: "Remoção de veículos arrematados em leilão direto do pátio, com a documentação de liberação e entrega no endereço combinado.",
   },
   {
     icon: Truck,
@@ -109,6 +115,10 @@ const faqs = [
     a: "Sim. Atendemos bancos, financeiras, escritórios de advocacia e pátios com remoção de veículos em busca e apreensão, mediante ordem judicial e documentação em ordem, com discrição e registro fotográfico do atendimento.",
   },
   {
+    q: "Vocês fazem retirada de veículo arrematado em leilão?",
+    a: "Sim. Retiramos veículos comprados em leilão direto do pátio e entregamos no endereço que você indicar, na Zona Leste, na capital ou na Grande São Paulo. Basta ter em mãos a documentação de liberação (nota de arrematação e autorização do pátio). O valor é fechado antes, pela distância e pelo tipo de veículo.",
+  },
+  {
     q: "O guincho entra em garagem baixa ou rua estreita?",
     a: "Sim. Temos equipamento compacto e acessórios de arraste para subsolos, garagens com pé-direito baixo, vielas e ruas estreitas onde caminhões-guincho maiores não conseguem entrar nem manobrar.",
   },
@@ -168,7 +178,7 @@ export const Route = createFileRoute("/")({
       {
         name: "keywords",
         content:
-          "guincho asa-delta zona leste, guincho 24 horas são paulo, busca e apreensão, recuperação de veículo financiado, reboque garagem baixa, guincho rua estreita",
+          "guincho asa-delta zona leste, guincho 24 horas são paulo, busca e apreensão, recuperação de veículo financiado, retirada de veículo em leilão, reboque garagem baixa, guincho rua estreita",
       },
       { name: "robots", content: "index, follow, max-image-preview:large" },
       { property: "og:title", content: PAGE_TITLE },
