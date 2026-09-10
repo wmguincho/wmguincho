@@ -8,7 +8,6 @@ import {
   ShieldCheck,
   Truck,
   BatteryCharging,
-  KeyRound,
   Fuel,
   CircleDot,
   Bike,
@@ -74,11 +73,6 @@ const services = [
     icon: Fuel,
     title: "Pane seca",
     desc: "Levamos combustível suficiente para você chegar ao posto mais próximo.",
-  },
-  {
-    icon: KeyRound,
-    title: "Chaveiro automotivo",
-    desc: "Abertura de veículo sem danos quando a chave fica trancada dentro.",
   },
   {
     icon: Bike,
