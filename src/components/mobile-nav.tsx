@@ -5,6 +5,7 @@ import {
   FileSearch,
   HelpCircle,
   Home,
+  Images,
   MapPin,
   MessageCircle,
   Phone,
@@ -18,6 +19,7 @@ const items: NavItem[] = [
   { label: "Início", href: "#topo", icon: Home },
   { label: "Serviços", href: "#servicos", icon: Truck },
   { label: "Busca e apreensão", href: "#apreensao", icon: FileSearch },
+  { label: "Frota em ação", href: "#frota", icon: Images },
   { label: "Zona Leste", href: "#zona-leste", icon: MapPin },
   { label: "Dúvidas", href: "#faq", icon: HelpCircle },
 ];

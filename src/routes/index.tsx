@@ -25,6 +25,7 @@ import logo from "@/assets/wm-guincho-logo.webp";
 import { openCookiePreferences } from "@/components/cookie-consent";
 import { MobileNav } from "@/components/mobile-nav";
 import { Reveal } from "@/components/reveal";
+import { FrotaGallery } from "@/components/frota-gallery";
 
 const SITE_URL = "https://wmguinchodaleste.com.br";
 const HOME_URL = `${SITE_URL}/`;
@@ -351,6 +352,12 @@ function Index() {
             </a>
             <a
               className="relative py-2 text-white/80 transition-colors after:pointer-events-none after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-[width] after:duration-300 hover:text-primary hover:after:w-1/2"
+              href="#frota"
+            >
+              Frota
+            </a>
+            <a
+              className="relative py-2 text-white/80 transition-colors after:pointer-events-none after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-[width] after:duration-300 hover:text-primary hover:after:w-1/2"
               href="#zona-leste"
             >
               Zona Leste
@@ -555,6 +562,27 @@ function Index() {
                 ))}
               </ul>
             </article>
+          </div>
+        </section>
+
+        {/* FROTA EM AÇÃO */}
+        <section id="frota" className="scroll-mt-24 border-t border-border">
+          <div className="mx-auto max-w-6xl px-4 py-20">
+            <Reveal as="header" className="mb-2 max-w-2xl">
+              <p className="text-xs font-bold uppercase tracking-[0.25em] text-primary">
+                Frota em ação
+              </p>
+              <h2 className="mt-3 font-display text-2xl uppercase sm:text-3xl">
+                Atendimentos reais, equipamento próprio
+              </h2>
+              <p className="mt-4 text-muted-foreground">
+                Fotos do dia a dia na Zona Leste e Grande São Paulo: guincho asa-delta, reboque de
+                moto e remoção em ruas onde caminhão-guincho não entra.
+              </p>
+            </Reveal>
+            <Reveal>
+              <FrotaGallery />
+            </Reveal>
           </div>
         </section>
 
